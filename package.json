@@ -1,0 +1,58 @@
+{
+  "name": "release-notes",
+  "version": "0.0.1",
+  "description": "Generate release notes from recent pull requests",
+  "main": "lib/index.js",
+  "bin": {
+    "release-notes": "lib/cli.js"
+  },
+  "dependencies": {
+    "commander": "2.15.1",
+    "got": "8.3.1",
+    "lodash": "^4.17.10"
+  },
+  "repository": "xavdid/typed-install",
+  "devDependencies": {
+    "@types/got": "8.3.1",
+    "@types/jest": "22.2.3",
+    "@types/lodash": "^4.14.108",
+    "jest": "22.4.3",
+    "tslint": "5.10.0",
+    "typescript": "2.8.3"
+  },
+  "scripts": {
+    "test": "jest",
+    "posttest": "yarn lint",
+    "lint": "tslint -p tsconfig.json -c tslint.json",
+    "preversion": "yarn build",
+    "build": "tsc",
+    "release": "npx np"
+  },
+  "keywords": [
+    "typescript",
+    "npm",
+    "installing"
+  ],
+  "author": "David Brownman <beamneocube@gmail.com> (https://davidbrownman.com)",
+  "license": "ISC",
+  "prettier": {
+    "semi": false,
+    "singleQuote": true
+  },
+  "typings": "lib/index.d.ts",
+  "jest": {
+    "silent": true,
+    "transform": {
+      ".+\\.tsx?$": "ts-jest"
+    },
+    "testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.(jsx?|tsx?)$",
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js",
+      "jsx",
+      "json",
+      "node"
+    ]
+  }
+}
