@@ -7,23 +7,24 @@ export * from './interfaces'
 export { formatMarkdown } from './utils'
 
 export const fetchPRs = async (
-  repo: string,
-  since?: Date,
-  otherRepos?: string[]
+  repo: string | string[],
+  token?: string,
+  since?: Date
+  // otherRepos?: string[]
 ) => {
+  const reposToFetch = typeof repo === 'string' ? [repo] : repo
+
   if (!since) {
-    const tags = (await githubRequest(repo, 'tags')) as Tag[]
-    const commitInfo = (await githubRequest(tags[0].commit.url)) as SHA
+    const tags = (await githubRequest(reposToFetch[0], token, 'tags')) as Tag[]
+    const commitInfo = (await githubRequest(tags[0].commit.url, token)) as SHA
 
     since = new Date(commitInfo.commit.committer.date)
   }
 
   const sections: { [x: string]: PullRequest[] } = {}
 
-  const reposToFetch = [repo].concat(otherRepos || [])
-
   for (const r of reposToFetch) {
-    const pulls = (await githubRequest(r, 'pulls', {
+    const pulls = (await githubRequest(r, token, 'pulls', {
       state: 'closed'
     })) as PullRequest[]
 
@@ -31,7 +32,7 @@ export const fetchPRs = async (
       p => p.merged_at && new Date(p.merged_at) > since!
     )
 
-    sections[repo] = pullsToRelease
+    sections[r] = pullsToRelease
   }
 
   return sections

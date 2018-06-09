@@ -6,6 +6,11 @@
   "bin": {
     "release-notes": "lib/cli.js"
   },
+  "files": [
+    "/lib/*.js",
+    "/lib/index.d.ts",
+    "!/lib/interfaces.js"
+  ],
   "dependencies": {
     "commander": "2.15.1",
     "got": "8.3.1",
@@ -13,11 +18,15 @@
   },
   "repository": "xavdid/typed-install",
   "devDependencies": {
+    "@types/dotenv": "4.0.3",
     "@types/got": "8.3.1",
     "@types/jest": "22.2.3",
-    "@types/lodash": "^4.14.108",
+    "@types/lodash": "4.14.108",
+    "dotenv": "6.0.0",
     "jest": "22.4.3",
+    "ts-jest": "22.4.6",
     "tslint": "5.10.0",
+    "tslint-config-prettier": "1.13.0",
     "typescript": "2.8.3"
   },
   "scripts": {
@@ -41,7 +50,6 @@
   },
   "typings": "lib/index.d.ts",
   "jest": {
-    "silent": true,
     "transform": {
       ".+\\.tsx?$": "ts-jest"
     },
