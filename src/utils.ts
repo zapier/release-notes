@@ -1,6 +1,6 @@
 import * as got from 'got'
 
-import { values, merge, flatten, last, isEqual, sortBy } from 'lodash'
+import { flatten, last, isEqual, sortBy } from 'lodash'
 import { PullRequest } from './interfaces'
 
 const ROOT_URL = 'https://api.github.com/repos'
@@ -53,7 +53,7 @@ export const githubRequest = async (
     throw new Error(response.statusMessage)
   }
 
-  // TODO: paginate
+  // TODO: paginate if there's a lot of PRs
   return response.body
 }
 
@@ -63,16 +63,20 @@ const formatPR = (pr: PullRequest) => {
 
 export const formatMarkdown = (
   input: { [x: string]: PullRequest[] },
-  removeOrg?: boolean,
-  order?: string[],
-  version?: string
+  {
+    keepOrg,
+    order,
+    version
+  }: {
+    keepOrg?: boolean
+    order?: string[]
+    version?: string
+  } = {}
 ) => {
   let keys = Object.keys(input)
-  if (removeOrg) {
+  if (!keepOrg) {
     keys = keys.map(k => last(k.split('/'))) as string[]
   }
-
-  const s = new Set()
 
   // take care not to mutate input
   if (order && !isEqual(sortBy(keys), sortBy(order))) {

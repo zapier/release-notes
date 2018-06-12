@@ -6,11 +6,10 @@ import { githubRequest } from './utils'
 export * from './interfaces'
 export { formatMarkdown } from './utils'
 
-export const fetchPRs = async (
+export const releaseNotes = async (
   repo: string | string[],
   token?: string,
   since?: Date
-  // otherRepos?: string[]
 ) => {
   const reposToFetch = typeof repo === 'string' ? [repo] : repo
 

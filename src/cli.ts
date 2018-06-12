@@ -1,8 +1,7 @@
 #!/usr/bin/env node
 
 import program = require('commander')
-import { fetchPRs as main } from './index'
-import { formatMarkdown } from './utils'
+import { releaseNotes as main, formatMarkdown } from './index'
 const pj = require('../package.json')
 
 program
@@ -20,8 +19,8 @@ if (!program.args.length) {
   process.exit(1)
 }
 
-const otherRepos = program.args.slice(1)
-const token = program.token || process.env.GITHUB_API_TOKEN || undefined
+const token: string | undefined =
+  program.token || process.env.GITHUB_API_TOKEN || undefined
 
 // the program object has the flags set on it when they're present
 main(program.args, token, program.since)
