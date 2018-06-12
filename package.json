@@ -43,7 +43,7 @@
     "installing"
   ],
   "author": "David Brownman <beamneocube@gmail.com> (https://davidbrownman.com)",
-  "license": "ISC",
+  "license": "MIT",
   "prettier": {
     "semi": false,
     "singleQuote": true
