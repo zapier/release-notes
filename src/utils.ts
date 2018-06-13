@@ -19,6 +19,23 @@ const generateUrl = (repoOrUrl: string, path?: string) => {
   return parts.join('/')
 }
 
+export const processTimestamp = (ts?: string) => {
+  if (ts === undefined) {
+    return ts
+  }
+
+  // short, standard unix timestamp
+  if (ts.length === 10) {
+    return new Date(parseInt(ts, 10) * 1000)
+  } else if (ts.length === 13) {
+    return new Date(parseInt(ts, 10))
+  } else {
+    throw new Error(
+      `"${ts}" isn't a valid timestamp: use a unix timestamp instead`
+    )
+  }
+}
+
 export const githubRequest = async (
   repoOrUrl: string,
   token?: string,

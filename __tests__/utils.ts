@@ -1,5 +1,5 @@
 import { config } from 'dotenv'
-import { githubRequest } from '../src/utils'
+import { githubRequest, processTimestamp } from '../src/utils'
 
 config()
 
@@ -15,5 +15,17 @@ describe('utils', () => {
       process.env.GITHUB_API_TOKEN
     )
     expect(response.name).toEqual('secret-test')
+  })
+
+  test('process timestamp', () => {
+    const d = new Date(1528847764000)
+
+    expect(processTimestamp()).toBeUndefined()
+
+    expect(() => processTimestamp('asdf')).toThrow()
+
+    expect(processTimestamp('1528847764')).toEqual(d)
+
+    expect(processTimestamp('1528847764000')).toEqual(d)
   })
 })
