@@ -1,10 +1,16 @@
 # release-notes
 
+Generate markdown from all of the PRs that have been closed since your last release!
+
 Originally used to generate notes for [zapier-platform-cli](https://github.com/zapier/zapier-platform-cli) and its related repos.
 
 ## Usage
 
 In its simplest form, invoking this pulls the names of all of the closed PRs since the last time the given repo had a release. If passed multiple repos, it'll use the most recent release of the first as the date to filter against.
+
+For more info, run:
+
+> % release-notes -h
 
 ### Limitations
 
@@ -28,8 +34,8 @@ Takes the above object of PRs and returns a nicely formatted markdown file. This
 
 It accepts an object with the following keys as the second parameter (all of which are optional):
 
-| Key       | Type     | Description                                                                    |
-| --------- | -------- | ------------------------------------------------------------------------------ |
-| `keepOrg` | boolean  | if true, list the repo as `<ORG>/<REPO>` instead of `<REPO>`                   |
-| `order`   | string[] | print the repos in this order (which can be different than the supplied order) |
-| `version` | `string` | pre-fills the version number. Prints `MAJOR.MINOR.PATCH` if missing            |
+| Key       | Type       | Description                                                                    |
+| --------- | ---------- | ------------------------------------------------------------------------------ |
+| `keepOrg` | `boolean`  | if true, list the repo as `<ORG>/<REPO>` instead of `<REPO>`                   |
+| `order`   | `string[]` | print the repos in this order (which can be different than the supplied order) |
+| `version` | `string`   | pre-fills the version number. Prints `MAJOR.MINOR.PATCH` if missing            |
