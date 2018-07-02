@@ -1,4 +1,6 @@
-# release-notes
+# release-notes 
+
+![npm](https://img.shields.io/npm/v/release-notes.svg)
 
 Generate markdown from all of the PRs that have been closed since your last release!
 
