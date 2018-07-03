@@ -1,4 +1,4 @@
-# release-notes 
+# release-notes
 
 ![npm](https://img.shields.io/npm/v/release-notes.svg)
 
@@ -36,8 +36,8 @@ Takes the above object of PRs and returns a nicely formatted markdown file. This
 
 It accepts an object with the following keys as the second parameter (all of which are optional):
 
-| Key       | Type       | Description                                                                    |
-| --------- | ---------- | ------------------------------------------------------------------------------ |
-| `keepOrg` | `boolean`  | if true, list the repo as `<ORG>/<REPO>` instead of `<REPO>`                   |
-| `order`   | `string[]` | print the repos in this order (which can be different than the supplied order) |
-| `version` | `string`   | pre-fills the version number. Prints `MAJOR.MINOR.PATCH` if missing            |
+| Key       | Type       | Description                                                                       |
+| --------- | ---------- | --------------------------------------------------------------------------------- |
+| `keepOrg` | `boolean`  | if true, list the repo as `<ORG>/<REPO>` instead of `<REPO>`. Defaults to `false` |
+| `order`   | `string[]` | print the repos in this order (which can be different than the supplied order)    |
+| `version` | `string`   | pre-fills the version number. Prints `MAJOR.MINOR.PATCH` if missing               |

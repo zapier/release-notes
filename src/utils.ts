@@ -78,22 +78,28 @@ const formatPR = (pr: PullRequest) => {
   return `* ${pr.title} ([#${pr.number}](${pr.html_url}))`
 }
 
+const repoName = (s: string) => last(s.split('/')) as string
+
+const repoHeader = (repo: string, numRepos: number, keepOrg: boolean) => {
+  if (numRepos === 1) {
+    return ''
+  }
+  return `\n### ${keepOrg ? repo : repoName(repo)}`
+}
+
 export const formatMarkdown = (
   input: { [x: string]: PullRequest[] },
   {
-    keepOrg,
+    keepOrg = false,
     order,
-    version
+    version = 'MAJOR.MINOR.PATCH'
   }: {
     keepOrg?: boolean
     order?: string[]
     version?: string
   } = {}
 ) => {
-  let keys = Object.keys(input)
-  if (!keepOrg) {
-    keys = keys.map(k => last(k.split('/'))) as string[]
-  }
+  const keys = Object.keys(input)
 
   // take care not to mutate input
   if (order && !isEqual(sortBy(keys), sortBy(order))) {
@@ -102,13 +108,10 @@ export const formatMarkdown = (
 
   const sections = flatten(
     (order || keys).map(repo => [
-      `### ${repo}`,
-      input[repo].length ? input[repo].map(formatPR) : 'None!',
-      ''
+      repoHeader(repo, keys.length, keepOrg),
+      input[repo].length ? input[repo].map(formatPR) : 'None!'
     ])
   )
 
-  return flatten([`## ${version || 'MAJOR.MINOR.PATCH'}`, '', sections]).join(
-    '\n'
-  )
+  return flatten([`## ${version}`, sections]).join('\n')
 }
