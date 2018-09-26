@@ -1,10 +1,16 @@
 # release-notes
 
-![npm](https://img.shields.io/npm/v/release-notes.svg)
+[![npm](https://img.shields.io/npm/v/release-notes.svg)](https://www.npmjs.com/package/release-notes)
 
 Generate markdown from all of the PRs that have been closed since your last release!
 
 Originally used to generate notes for [zapier-platform-cli](https://github.com/zapier/zapier-platform-cli) and its related repos.
+
+## Installation
+
+```bash
+npm i -g release-notes
+```
 
 ## Usage
 
@@ -12,7 +18,9 @@ In its simplest form, invoking this pulls the names of all of the closed PRs sin
 
 For more info, run:
 
-> % release-notes -h
+```bash
+release-notes -h
+```
 
 ### Limitations
 
