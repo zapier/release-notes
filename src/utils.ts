@@ -58,8 +58,8 @@ export const githubRequest = async (
 
   if (response.statusCode === 403) {
     throw new Error(
-      `Rate limit reached! Either add an access token or wait until ${new Date(
-        response.headers['X-RateLimit-Reset'] as string
+      `Rate limit reached! Either add an access token or wait until ${processTimestamp(
+        response.headers['x-ratelimit-reset'] as string
       )}`
     )
   } else if (response.statusCode === 404) {
