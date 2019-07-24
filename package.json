@@ -1,6 +1,6 @@
 {
   "name": "release-notes",
-  "version": "1.0.2-0",
+  "version": "1.0.3-0",
   "description": "Generate release notes from recent pull requests",
   "main": "lib/index.js",
   "bin": {
